@@ -1,0 +1,60 @@
+/*
+extern TIM_HandleTypeDef htim2;  // Timer for RGB red - PA15     ------> TIM2_CH1
+extern TIM_HandleTypeDef htim3;  // Timer for RGB blue - PA6     ------> TIM3_CH1
+extern TIM_HandleTypeDef htim4;  // Timer for RGB green - PB7     ------> TIM4_CH2
+ */
+
+
+ / {
+	/* pwmleds Node: This node defines the configuration for PWM-controlled LEDs. */
+	 pwmleds {
+		compatible = "pwm-leds";
+		status = "okay";
+
+		/* Sub-Node: */
+			/* &pwm2: References the pwm3 controller node.
+			 * 1: The PWM channel number.
+			 * PWM_MSEC(20): The period of the PWM signal in milliseconds (20 ms in this case).
+			 * PWM_POLARITY_NORMAL: Indicates the polarity of the PWM signal. */
+		/*red_pwm_led: red_pwm_led {
+			pwms = <&pwm2 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};
+
+		green_pwm_led: green_pwm_led {
+			pwms = <&pwm4 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};
+
+		blue_pwm_led: blue_pwm_led {
+			pwms = <&pwm3 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};*/
+
+		red_pwm_led: red_pwm_led {
+			pwms = <&pwm2 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};
+		green_pwm_led: green_pwm_led {
+			pwms = <&pwm4 2 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};
+		blue_pwm_led: blue_pwm_led {
+			pwms = <&pwm3 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};
+	};
+
+	aliases {
+		red-pwm-led = &red_pwm_led;
+		green-pwm-led = &green_pwm_led;
+		blue-pwm-led = &blue_pwm_led;
+	};
+
+};
+
+&pwm2 {
+	status = "okay";
+};
+
+&pwm3 {
+	status = "okay";
+};
+
+&pwm4 {
+	status = "okay";
+};

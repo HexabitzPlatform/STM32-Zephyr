@@ -1,0 +1,27 @@
+
+/ {
+	/* pwmleds Node: This node defines the configuration for PWM-controlled LEDs. */
+	 pwmleds {
+		compatible = "pwm-leds";
+		status = "okay";
+
+		/* Sub-Node: */
+		pwm_led: pwm_led {
+			/* &pwm3: References the pwm3 controller node.
+			 * 1: The PWM channel number.
+			 * PWM_MSEC(20): The period of the PWM signal in milliseconds (20 ms in this case).
+			 * PWM_POLARITY_NORMAL: Indicates the polarity of the PWM signal. */
+			pwms = <&pwm3 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};
+	};
+
+	aliases {
+		pwm-led0 = &pwm_led;
+	};
+
+};
+
+
+&pwm3 {
+	status = "okay";
+};
